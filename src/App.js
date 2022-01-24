@@ -3,7 +3,7 @@ import { useState } from 'react/cjs/react.development';
 import './App.css';
 import { Message } from './components/Message';
 import { MessageShow } from './components/MessageShow';
-
+import { Chats } from './components/Chats';
 
 
 export function App() {
@@ -19,13 +19,20 @@ export function App() {
     }
   }, [messagesList])
 
+  const sendMessageProps = (message) => {
+    console.log(message);
+    setMessagesList([...messagesList, message]);
+  }
+
   return(
   <div className={['App', 'App-Header'].join(' ')}>
-    <Message sendMessage={(message) => {
-      console.log(message);
-      setMessagesList([...messagesList, message])
-      }}/>
-    <MessageShow messagesList={messagesList}/>
+    <div className='chatList'>
+      <Chats></Chats>
+    </div>
+    <div>
+      <MessageShow messagesList={messagesList}/>
+      <Message sendMessage={sendMessageProps}/>
+    </div>
   </div>
   )
 

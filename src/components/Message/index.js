@@ -1,7 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
+import {TextField, Button} from "@mui/material";
 
 export function Message(props) {
-    
+
+    const inputRef = useRef(null);
     const [message, setMessage] = useState({text: '', author: 'Sponge Bob'})
 
     const resetForm = useCallback(() => {
@@ -13,8 +15,12 @@ export function Message(props) {
         if (props.sendMessage) {
             props.sendMessage(message);
         }
-        resetForm();
+        resetForm();        
     }
+
+    useEffect(() => {
+        inputRef.current.focus();
+    })
 
     const onChangeText = useCallback((event) => {
         setMessage((message) => {
@@ -27,15 +33,18 @@ export function Message(props) {
 
     return (
         <div>
-            <form onSubmit={sendMessage} onReset={resetForm} className="form">
-                <input type="text" name="text" 
+            <form onSubmit={sendMessage} onReset={resetForm} className="form">                
+                <TextField
+                    inputRef={inputRef}
+                    // autoFocus
+                    size="small"
                     value={message.text}
                     onChange={onChangeText}
-                ></input>
-                <input type="submit"></input>
+                    label="Текст сообщения"/>
+                <Button type="submit" variant="contained">SEND</Button>
             </form>
         </div>
     )
-    // return props.messages.map((message) => <div key={props.messages.indexOf(message)}>{message}</div>)
+    
 }
 
