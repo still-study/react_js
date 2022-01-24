@@ -2,7 +2,12 @@ body {
   background-color: #282c34;
 }
 .App {
+  box-sizing: border-box;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 80vh;
   text-align: center;
+  display: flex;  
 }
 
 .App-logo {
@@ -66,4 +71,11 @@ body {
 .row span {
   color: #ce8820;
   font-size: 22px;
+}
+
+.chatList {
+  color: #ffffff;
+  width: 300px;
+  border-right: 2px solid #ffffff;
+  margin-right: 50px;
 }
