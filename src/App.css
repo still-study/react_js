@@ -45,6 +45,40 @@ body {
   }
 }
 
+.header {
+  background-color: dodgerblue;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 28px;
+}
+
+.nav {
+  display: flex;
+  width: min-content;
+  margin-right: 30%;
+}
+
+.nav_link {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 20%);
+  margin: 16px;
+  border-radius: 10px;
+  padding: 16px;
+  height: 80vh;
+  display: flex;
+}
+
 .form {
   margin-top: 50px;
 }
@@ -74,8 +108,18 @@ body {
 }
 
 .chatList {
-  color: #ffffff;
   width: 300px;
-  border-right: 2px solid #ffffff;
+  border-right: 2px solid rgba(255, 255, 255, 10%);
   margin-right: 50px;
+  height: 100%;
+}
+
+.chatList a{
+  font-size: 24px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.chat_header {
+  color: #ffffff;
 }
