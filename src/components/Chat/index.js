@@ -6,6 +6,7 @@ import { useState } from 'react/cjs/react.development';
 
 export const Chat = () => {
     const {chatId} = useParams();
+    console.log(useParams());
     const [messagesList, setMessagesList] = useState([]);
   
     useEffect(() => {
