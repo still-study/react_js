@@ -1,3 +1,5 @@
+import {ReduxExample} from '../../examples/reduxExamples'
+
 export const Profile = () => {
-    return <div>PROFILE</div>
+    return <ReduxExample></ReduxExample>
 }
