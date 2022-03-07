@@ -1,7 +1,16 @@
-import {nanoid} from 'nanoid';
+import {useSelector} from 'react-redux';
+import {getMessages} from "../../store/messages/selectors";
 
-export const MessageShow = (props) => {
-    return props.messagesList.map((message) => <div className="row"
-    key={nanoid()}><span>Автор:</span> {message.author}<span><br></br>
+export const MessageShow = ({chatId}) => {
+
+    const messages = useSelector(getMessages(chatId));
+
+    if (messages) {
+        return messages.map((message) => <div className="row"
+                                               key={message.id}><span>Автор:</span> {message.author}<span><br></br>
         Текст:</span> {message.text}</div>)
+    } else {
+        return '';
+    }
+
 }
