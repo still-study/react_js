@@ -114,6 +114,12 @@ body {
   height: 100%;
 }
 
+.chatListItem {
+  display: flex;
+  justify-content: space-around;
+  width: inherit;
+}
+
 .chatList a{
   font-size: 24px;
   color: #ffffff;

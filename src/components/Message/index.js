@@ -1,21 +1,22 @@
 import { useCallback, useEffect, useState, useRef } from "react";
 import {TextField, Button} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {addMessage} from "../../store/messages/actions";
 
+export function Message({chatId}) {
 
-export function Message(props) {
+    const dispatch = useDispatch();
 
     const inputRef = useRef(null);
-    const [message, setMessage] = useState({text: '', author: 'Sponge Bob'})
+    const [message, setMessage] = useState('');
 
     const resetForm = useCallback(() => {
-        setMessage({text: '', author: 'Sponge Bob'})
+        setMessage('')
     }, [])
 
     const sendMessage = (event) => {
         event.preventDefault();
-        if (props.sendMessage) {
-            props.sendMessage(message);
-        }
+        dispatch(addMessage(chatId, message));
         resetForm();        
     }
 
@@ -24,12 +25,7 @@ export function Message(props) {
     })
 
     const onChangeText = useCallback((event) => {
-        setMessage((message) => {
-            return {
-                ...message,
-                text: event.target.value
-            }
-        });
+        setMessage(event.target.value);
     }, [])
 
     return (
@@ -39,7 +35,7 @@ export function Message(props) {
                     inputRef={inputRef}
                     // autoFocus
                     size="small"
-                    value={message.text}
+                    value={message}
                     onChange={onChangeText}
                     label="Текст сообщения"/>
                 <Button type="submit" variant="contained">SEND</Button>
