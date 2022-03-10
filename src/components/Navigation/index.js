@@ -14,6 +14,10 @@ const NavMenu = [
     {
         path: '/chats',
         title: 'Chats',
+    },
+    {
+        path: '/api',
+        title: 'API',
     }
 ];
 

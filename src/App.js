@@ -2,7 +2,7 @@
 import './App.css';
 
 import { MainLayout } from "./layouts/MainLayout";
-import {Home, Profile, Chats} from './views';
+import {Home, Profile, Chats, Api} from './views';
 import {Route, Switch} from 'react-router-dom';
 
 export function App() {
@@ -13,6 +13,7 @@ export function App() {
         <Route exact path={'/'} component={Home} />
         <Route path={'/profile'} component={Profile} />
         <Route path={'/chats'} component={Chats} />
+        <Route path={'/api'} component={Api} />
         <Route>
           <h3>Page not found</h3>
         </Route>
