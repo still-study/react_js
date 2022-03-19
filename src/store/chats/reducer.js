@@ -1,5 +1,4 @@
-import {ADD_CHAT, REMOVE_CHAT} from "./actions";
-import {nanoid} from "nanoid";
+import {CHANGE_CHATS, REMOVE_CHAT} from "./actions";
 
 const initialState = {
     chatList:[]
@@ -7,17 +6,20 @@ const initialState = {
 
 export const chatsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_CHAT:
+
+        case CHANGE_CHATS:
             return {
                 ...state,
                 chatList: [
                     ...state.chatList,
                     {
-                        id: nanoid(),
+                        id: action.id,
                         name: action.name
                     }
+
                 ]
             };
+
         case REMOVE_CHAT:
             return {
                 ...state,

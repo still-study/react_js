@@ -2,8 +2,9 @@ import {ChatsList} from '../../components/ChatsList';
 import {Chat} from '../../components/Chat';
 import {Route, Switch} from 'react-router-dom';
 import {useDispatch} from "react-redux";
-import {useCallback, useState} from "react";
-import {addChat} from "../../store/chats/actions";
+import {useCallback, useEffect, useState} from "react";
+import {addChatWithFirebase, initChatTracking} from "../../store/chats/actions";
+
 
 
 export const Chats = () => {
@@ -15,11 +16,15 @@ export const Chats = () => {
         setChat('')
     }, [])
 
-    const createChat = (event) => {
+    const createChat = useCallback((event) => {
         event.preventDefault();
-        dispatch(addChat(chat));
+        dispatch(addChatWithFirebase(chat));
         resetForm();
-    }
+    }, [chat, resetForm, dispatch])
+
+    useEffect(() => {
+        dispatch(initChatTracking());
+    }, [dispatch]);
 
     const onChangeText = useCallback((event) => {
         setChat(event.target.value);

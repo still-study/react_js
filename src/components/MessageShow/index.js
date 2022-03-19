@@ -1,5 +1,6 @@
 import {useSelector} from 'react-redux';
 import {getMessages} from "../../store/messages/selectors";
+// import {Redirect} from "react-router-dom";
 
 export const MessageShow = ({chatId}) => {
 
@@ -7,10 +8,15 @@ export const MessageShow = ({chatId}) => {
 
     if (messages) {
         return messages.map((message) => <div className="row"
-                                               key={message.id}><span>Автор:</span> {message.author}<span><br></br>
-        Текст:</span> {message.text}</div>)
+                                               key={message.key}><span>Автор:</span> {message.val().author}<span><br></br>
+        Текст:</span> {message.val().text}</div>)
     } else {
-        return '';
+        return ''
+        // return <Redirect to={{ pathname: "/profile" }} />
     }
+
+
+
+
 
 }
