@@ -1,5 +1,14 @@
-import {ReduxExample} from '../../examples/reduxExamples'
+// import {ReduxExample} from '../../examples/reduxExamples'
+import {useSelector} from "react-redux";
+import {getUser} from "../../store/user/reducer";
 
 export const Profile = () => {
-    return <ReduxExample></ReduxExample>
+    const user = useSelector(getUser);
+    // return <ReduxExample></ReduxExample>
+
+    return (
+        <div>
+            <p>{user.email}</p>
+        </div>
+    )
 }

@@ -60,7 +60,6 @@ body {
 .nav {
   display: flex;
   width: min-content;
-  margin-right: 30%;
 }
 
 .nav_link {
@@ -68,6 +67,14 @@ body {
   text-decoration: none;
   margin-left: 20px;
   margin-right: 20px;
+}
+
+.authBlock {
+  margin-left: 100px;
+  border: 1px solid white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
 }
 
 .content {

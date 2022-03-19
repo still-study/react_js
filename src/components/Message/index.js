@@ -1,10 +1,12 @@
 import {useCallback, useEffect, useState, useRef} from "react";
 import {TextField, Button} from "@mui/material";
-import {useDispatch} from "react-redux";
-import {addMessageWhitMiddleware} from "../../store/messages/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {addMessageWithFirebase, initMessageTracking} from "../../store/messages/actions";
+import {getUser} from "../../store/user/reducer";
 
 export function Message({chatId}) {
 
+    const user = useSelector(getUser);
     const dispatch = useDispatch();
 
     const inputRef = useRef(null);
@@ -20,11 +22,16 @@ export function Message({chatId}) {
         })
     }, [])
 
-    const sendMessage = (event) => {
+    const sendMessage = useCallback((event) => {
         event.preventDefault();
-        dispatch(addMessageWhitMiddleware(chatId, message));
+        dispatch(addMessageWithFirebase(chatId, {...message}));
+
         resetForm();
-    }
+    }, [chatId, message, resetForm, dispatch])
+
+    useEffect(() => {
+        dispatch(initMessageTracking());
+    }, [dispatch]);
 
     useEffect(() => {
         inputRef.current.focus();
@@ -33,9 +40,9 @@ export function Message({chatId}) {
     const onChangeText = useCallback((event) => {
         setMessage({
             text: event.target.value,
-            author: 'Sponge Bob'
+                author: user.email
         });
-    }, [])
+    }, [user.email])
 
     return (
         <div>
